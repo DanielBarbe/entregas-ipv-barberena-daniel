@@ -10,7 +10,7 @@ var player
 func _ready():
 	fire_position = $FirePosition
 	rng.randomize()
-	self.global_position.x = rng.randf_range(5, get_viewport().size.x - 5)
+	self.global_position.x = rng.randf_range(20, ProjectSettings.get_setting("display/window/size/width") - 20)
 	self.global_position.y = rng.randf_range(30, 300)
 
 
@@ -27,6 +27,7 @@ func fire():
 	projectile_container.add_child(projectile)
 	projectile.set_starting_values(fire_position.global_position, (player.global_position - fire_position.global_position).normalized())
 	projectile.connect("delete_requested", self, "_on_projectile_delete_requested")
+	print(ProjectSettings.get_setting("display/window/size/width"))
 
 func _on_projectile_delete_requested(projectile):
 	projectile_container.remove_child(projectile)
