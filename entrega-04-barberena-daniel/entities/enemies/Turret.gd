@@ -38,12 +38,14 @@ func fire():
 		fire_timer.start()
 
 func _physics_process(delta):
+	
 	raycast.set_cast_to(to_local(target.global_position))
 	if raycast.is_colliding() && raycast.get_collider() == target:
 		if fire_timer.is_stopped():
 			fire_timer.start()
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
+		
 	if !path.empty():
 		var next_point:Vector2 = to_local(path.front())
 		while !path.empty() && position.distance_to(next_point) < 2:
