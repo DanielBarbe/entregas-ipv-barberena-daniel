@@ -91,7 +91,8 @@ func _apply_movement():
 
 func notify_hit(amount):
 	state_machine.notify_hit(amount)
-	_hit_audio()
+	if(amount < 0 and PlayerData.current_health > 0):
+		_hit_audio()
 
 
 func _remove():
